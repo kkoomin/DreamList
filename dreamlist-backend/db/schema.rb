@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_142239) do
+ActiveRecord::Schema.define(version: 2019_03_04_145936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,10 +33,8 @@ ActiveRecord::Schema.define(version: 2019_03_04_142239) do
     t.string "municipality"
     t.string "latitude"
     t.string "longitude"
-    t.bigint "destination_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["destination_id"], name: "index_airports_on_destination_id"
   end
 
   create_table "destinations", force: :cascade do |t|
@@ -46,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_142239) do
     t.string "country"
     t.string "latitude"
     t.string "longitude"
+    t.string "iso_country"
   end
 
   create_table "dreamlists", force: :cascade do |t|
@@ -75,7 +74,6 @@ ActiveRecord::Schema.define(version: 2019_03_04_142239) do
 
   add_foreign_key "airport_locators", "airports"
   add_foreign_key "airport_locators", "destinations"
-  add_foreign_key "airports", "destinations"
   add_foreign_key "dreamlists", "destinations"
   add_foreign_key "dreamlists", "users"
   add_foreign_key "vacations", "users"
