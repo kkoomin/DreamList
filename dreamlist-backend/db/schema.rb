@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_115116) do
+ActiveRecord::Schema.define(version: 2019_03_04_125616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airports", force: :cascade do |t|
+    t.string "name"
+    t.string "iata_code"
+    t.string "iso_country"
+    t.string "iso_region"
+    t.string "municipality"
+    t.string "latitude"
+    t.string "longitude"
+    t.bigint "destination_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_airports_on_destination_id"
+  end
 
   create_table "destinations", force: :cascade do |t|
     t.string "name"
@@ -46,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_03_04_115116) do
     t.index ["user_id"], name: "index_vacations_on_user_id"
   end
 
+  add_foreign_key "airports", "destinations"
   add_foreign_key "dreamlists", "destinations"
   add_foreign_key "dreamlists", "users"
   add_foreign_key "vacations", "users"
