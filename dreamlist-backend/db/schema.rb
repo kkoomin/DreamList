@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_125616) do
+ActiveRecord::Schema.define(version: 2019_03_04_142239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airport_locators", force: :cascade do |t|
+    t.bigint "destination_id"
+    t.bigint "airport_id"
+    t.boolean "inDestination"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["airport_id"], name: "index_airport_locators_on_airport_id"
+    t.index ["destination_id"], name: "index_airport_locators_on_destination_id"
+  end
 
   create_table "airports", force: :cascade do |t|
     t.string "name"
@@ -33,6 +43,9 @@ ActiveRecord::Schema.define(version: 2019_03_04_125616) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "country"
+    t.string "latitude"
+    t.string "longitude"
   end
 
   create_table "dreamlists", force: :cascade do |t|
@@ -60,6 +73,8 @@ ActiveRecord::Schema.define(version: 2019_03_04_125616) do
     t.index ["user_id"], name: "index_vacations_on_user_id"
   end
 
+  add_foreign_key "airport_locators", "airports"
+  add_foreign_key "airport_locators", "destinations"
   add_foreign_key "airports", "destinations"
   add_foreign_key "dreamlists", "destinations"
   add_foreign_key "dreamlists", "users"

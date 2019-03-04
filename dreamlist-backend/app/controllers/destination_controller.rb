@@ -1,10 +1,11 @@
 class DestinationController < ApplicationController
   def index
-  end
-
-  def create
+    @destinations = Destination.all
+    render json: @destinations
   end
 
   def show
+    @destination = Destination.find(params[:id])
+    render json: @destination
   end
 end
