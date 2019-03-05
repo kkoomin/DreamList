@@ -19,6 +19,15 @@ body#index-body {
     max-width: 100%;
 }
 
+.jumbotron {
+    display: block;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4); /* Black background with 0.5 opacity */
+    
+
+
+}
+
 .col-6.col-md-4  {
     background-color: pink;
 }
