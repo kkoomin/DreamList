@@ -5,8 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+AirportLocator.destroy_all
 Airport.destroy_all
+Destination.destroy_all
 
 csv = File.read('public/airports.csv')
 
@@ -22,13 +23,14 @@ CSV.parse(csv, headers:true).each do |row|
       municipality: row.fields[10],
       iata_code: row.fields[13]
     }
+    puts "creating airport #{row.fields[3]}"
     Airport.create(airport)
   end
 end
 
 
 
-Destination.destroy_all
+
 
 csv_2 = File.read('public/worldcities.csv')
 
@@ -40,6 +42,7 @@ CSV.parse(csv_2, headers:true).each do |row|
     latitude: row.fields[2],
     longitude: row.fields[3]
   }
+  puts "creating city #{row.fields[1]}"
   Destination.create(city)
 end
 
@@ -57,7 +60,7 @@ end
 
 
 
-AirportLocator.destroy_all
+
 
 Destination.all.each do |destination|
   airports_in_country = Airport.all.select{|airport| airport.iso_country == destination.iso_country}
@@ -78,6 +81,7 @@ Destination.all.each do |destination|
 
   airports_nearest.each do |airport|
     airport_locator = {airport_id: airport.id, destination_id: destination.id}
+    puts "creating airportlocator #{airport.name} - #{destination.name}"
     AirportLocator.create(airport_locator)
   end
 end
