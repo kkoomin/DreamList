@@ -19,18 +19,29 @@ body#index-body {
     max-width: 100%;
 }
 
+/* Index page */
 .jumbotron {
     display: block;
     text-align: center;
     background: rgba(0, 0, 0, 0.4); /* Black background with 0.5 opacity */
-    
-
-
+    color: white;
 }
 
-.col-6.col-md-4  {
-    background-color: pink;
+.form-group {
+    align-content: center;
+    text-align: center;
+    margin: auto;
 }
+
+.form-control {
+    width: 40%;
+    margin: auto; /* set the field center */
+}
+
+
+
+
+/* Map page */
 
 #map {
     z-index: 3;
@@ -52,4 +63,10 @@ body#index-body {
 .form-inline {
     display: block;
     text-align: center;
+}
+
+
+/* list */ 
+.col-6.col-md-4  {
+    background-color: pink;
 }

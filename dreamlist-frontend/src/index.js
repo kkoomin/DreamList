@@ -1,12 +1,36 @@
-// function getPlaceLists() {
-//     const options = {
-//         headers:{
-//             "X-RapidAPI-Key": "567356378cmshd62769e12f75fd4p14f62cjsn6b1c2336a0fd"
-//           }
-//     }
-//     return fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=London", options)
-//     .then(res => res.json())
-//     .then(list => console.log(list["Places"]))
-// }
+const btnSignIn = document.querySelector(".btn-sign-in")
+const btnSignUp = document.querySelector(".btn-sign-up")
+const signInForm = document.querySelector("#login-form")
+const indexDescription = document.querySelector(".index-description")
 
-// getPlaceLists()
+function toggleSignInForm() {
+    const signInFormDiv = document.querySelector(".sign-in-form");
+    if (signInFormDiv.style.display === "none") {
+      signInFormDiv.style.display = "block";
+      btnSignIn.style.display = "none"
+      indexDescription.style.display = "none"
+    } else {
+      signInFormDiv.style.display = "none";
+    }
+}
+
+function toggleSignUpForm() {
+    // const signInForm = document.querySelector(".sign-in-form");
+    // if (signInForm.style.display === "none") {
+    //   signInForm.style.display = "block";
+    //   btnSignIn.style.display = "none"
+    //   indexDescription.style.display = "none"
+    // } else {
+    //   signInForm.style.display = "none";
+    // }
+    console.log("Not made yet")
+}
+
+function dummySubmit() {
+    event.preventDefault()
+    document.location.href = "dreamlist.html"
+}
+
+btnSignIn.addEventListener("click", toggleSignInForm)
+btnSignUp.addEventListener("click", toggleSignUpForm)
+signInForm.addEventListener("submit", dummySubmit)

@@ -13,6 +13,15 @@ class UserController < ApplicationController
     render json: @user
   end
 
+  def edit 
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update
+  end
+    
+  
   private
 
   def user_params

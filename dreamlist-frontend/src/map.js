@@ -4,7 +4,7 @@ function initMap() {
 
     var map = new google.maps.Map(document.getElementById('map'), {
       center: center,
-      zoom: 3,
+      zoom: 2.3,
       zoomControl: false,
       fullscreenControl: false
     });
@@ -14,12 +14,13 @@ function initMap() {
     // coordInfoWindow.setPosition(center);
     // coordInfoWindow.open(map);
 
-    map.addListener('zoom_changed', function() {
-      coordInfoWindow.setContent(createInfoWindowContent(center, map.getZoom()));
-      coordInfoWindow.open(map);
-    });
+    // map.addListener('zoom_changed', function() {
+    //   coordInfoWindow.setContent(createInfoWindowContent(center, map.getZoom()));
+    //   coordInfoWindow.open(map);
+    // });
 
     map.addListener('click', function(e) {
+        // console.log(e.latLng.lat())
         placeMarkerAndPanTo(e.latLng, map);
       });
   }

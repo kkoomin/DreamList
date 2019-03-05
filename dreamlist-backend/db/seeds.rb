@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Buzzword.destroy_all
 AirportLocator.destroy_all
 Airport.destroy_all
 Destination.destroy_all
@@ -77,7 +78,6 @@ Destination.all.each do |destination|
 
   airports_nearest.each do |airport|
     airport_locator = {airport_id: airport.id, destination_id: destination.id}
-    puts "creating airportlocator #{airport.name} - #{destination.name}"
     AirportLocator.create(airport_locator)
   end
 end
