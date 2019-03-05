@@ -77,6 +77,7 @@ Destination.all.each do |destination|
 
   airports_nearest.each do |airport|
     airport_locator = {airport_id: airport.id, destination_id: destination.id}
+    puts "creating airportlocator #{airport.name} - #{destination.name}"
     AirportLocator.create(airport_locator)
   end
 end
