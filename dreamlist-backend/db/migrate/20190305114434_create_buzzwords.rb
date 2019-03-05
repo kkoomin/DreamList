@@ -1,0 +1,10 @@
+class CreateBuzzwords < ActiveRecord::Migration[5.2]
+  def change
+    create_table :buzzwords do |t|
+      t.string :word
+      t.references :destination, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end

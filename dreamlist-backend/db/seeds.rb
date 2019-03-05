@@ -5,14 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+AirportLocator.destroy_all
 Airport.destroy_all
-
+Destination.destroy_all
+#
+#
 csv = File.read('public/airports.csv')
-
+airports = []
 CSV.parse(csv, headers:true).each do |row|
   if row.fields[2] == "large_airport" && row.fields[13] != nil
-
     airport = {
       name: row.fields[3],
       latitude: row.fields[4],
@@ -22,26 +23,28 @@ CSV.parse(csv, headers:true).each do |row|
       municipality: row.fields[10],
       iata_code: row.fields[13]
     }
-    Airport.create(airport)
+    airports.push(airport)
   end
 end
+Airport.create(airports)
 
-
-
-Destination.destroy_all
 
 csv_2 = File.read('public/worldcities.csv')
-
+cities = []
 CSV.parse(csv_2, headers:true).each do |row|
-  city = {
-    name: row.fields[1],
-    country: row.fields[4],
-    iso_country: row.fields[5].downcase,
-    latitude: row.fields[2],
-    longitude: row.fields[3]
-  }
-  Destination.create(city)
+  if row.fields[9].to_f>=60000 && row.fields[5]!="CN" || row.fields[9].to_f>=1000000 && row.fields[5]=="CN"
+    city = {
+      name: row.fields[1],
+      country: row.fields[4],
+      iso_country: row.fields[5].downcase,
+      latitude: row.fields[2],
+      longitude: row.fields[3]
+    }
+    cities.push(city)
+  end
 end
+Destination.create(cities)
+
 
 def calculate_distance(lat1, lon1, lat2, lon2)
   earth_radius = 6371
@@ -54,10 +57,6 @@ def calculate_distance(lat1, lon1, lat2, lon2)
   d = earth_radius*c
   return d
 end
-
-
-
-AirportLocator.destroy_all
 
 Destination.all.each do |destination|
   airports_in_country = Airport.all.select{|airport| airport.iso_country == destination.iso_country}
@@ -81,3 +80,8 @@ Destination.all.each do |destination|
     AirportLocator.create(airport_locator)
   end
 end
+
+Destination.update_accuracy_of_names
+Destination.assign_price
+Destination.assign_weather
+Destination.assign_buzzword
