@@ -5,6 +5,7 @@ class Destination < ApplicationRecord
   has_many :users, through: :dreamlists
   has_many :buzzwords
 
+###################################SEED FUNCTIONS###################################################
   def self.update_accuracy_of_names
     cities_not_found = []
     Airport.all.each do |airport|
@@ -72,14 +73,34 @@ class Destination < ApplicationRecord
     end
   end
 
-  def self.assign_buzzword
-    buzzword = ['nightlife','nature','chill','history','culture','unique','beach','young','fun','family','single','couple','gustro','romantic','happening','modern','outdoor'].sample
+  def self.delete_destination_without_airport
     Destination.all.each do |destination|
-      if destination.airports.length != 0
-        newword = Buzzword.create(word:buzzword)
-        destination.buzzwords.push(newword)
-      end
+      destination.destroy if destination.airports.length == 0
     end
+  end
+
+  def self.assign_buzzword
+    buzzword = ['nightlife','nature','chill','history','culture','unique','beach','young','fun','family','single','couple','gustro','romantic','happening','modern','outdoor']
+    Destination.all.each do |destination|
+        newword = Buzzword.create(word:buzzword.sample)
+        destination.buzzwords.push(newword)
+    end
+  end
+
+###################################Search FUNCTIONS###################################################
+
+  def getBuzzWords
+    buzzwords = []
+    self.buzzwords.each {|buzzword| buzzwords.push(buzzword.word)}
+    return buzzwords
+  end
+
+
+  def self.findDestinations(buzzword,pricelow,pricehigh,weather)
+    destinations = Destination.all.select{|d|d.buzzwords.length!=0}.select do |destination|
+      (destination.buzzwords[0].word == buzzword) && (destination.price_range>=pricelow && destination.price_range<=pricehigh) && (destination.weather == weather)
+    end
+    destinations.map{|d| [d.latitude, d.longitude]}
   end
 
 end

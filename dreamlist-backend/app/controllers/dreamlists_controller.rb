@@ -1,4 +1,4 @@
-class DreamlistController < ApplicationController
+class DreamlistsController < ApplicationController
   def index
     @dreamlists = Dreamlist.all
     render json: @dreamlists
@@ -24,7 +24,7 @@ class DreamlistController < ApplicationController
   end
 
   private
-  
+
   def dreamlist_params
     params.require(:dreamlist).permit(:user_id, :destination_id)
   end

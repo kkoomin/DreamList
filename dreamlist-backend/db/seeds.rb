@@ -5,9 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Buzzword.destroy_all
 AirportLocator.destroy_all
 Airport.destroy_all
 Destination.destroy_all
+
 #
 #
 csv = File.read('public/airports.csv')
@@ -77,12 +79,12 @@ Destination.all.each do |destination|
 
   airports_nearest.each do |airport|
     airport_locator = {airport_id: airport.id, destination_id: destination.id}
-    puts "creating airportlocator #{airport.name} - #{destination.name}"
     AirportLocator.create(airport_locator)
   end
 end
 
 Destination.update_accuracy_of_names
+Destination.delete_destination_without_airport
 Destination.assign_price
 Destination.assign_weather
 Destination.assign_buzzword

@@ -1,4 +1,4 @@
-class AirportController < ApplicationController
+class AirportsController < ApplicationController
 
     def index
         @airports = Airport.all

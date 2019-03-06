@@ -13,10 +13,11 @@ class UserController < ApplicationController
     render json: @user
   end
 
+
   private
 
   def user_params
     params.require(:user).permit(:name, :home_base)
   end
-  
+
 end
