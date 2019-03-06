@@ -29,6 +29,7 @@ function showResult(){
   const weather = weatherInput.innerText
   getSearchResults(buzzword,lowPrice,highPrice,weather)
     .then(latlng_array => mapSearchResult(latlng_array))
+  event.target.reset()
 }
 
 function getSearchResults(buzzword,pricelow,pricehigh,weather){

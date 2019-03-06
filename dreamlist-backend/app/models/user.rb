@@ -11,5 +11,4 @@ class User < ApplicationRecord
         self.get_home_base_country.airports.map{|a| a.iata_code}
     end
 
-
 end

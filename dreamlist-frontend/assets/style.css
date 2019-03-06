@@ -68,7 +68,9 @@ body#index-body {
 
 .margin-auto {
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
+}
+
 
 /* list */
 .col-6.col-md-4  {
