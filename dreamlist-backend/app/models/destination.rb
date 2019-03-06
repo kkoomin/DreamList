@@ -104,7 +104,9 @@ class Destination < ApplicationRecord
     destinations = Destination.all.select{|d|d.buzzwords.length!=0}.select do |destination|
       (destination.buzzwords[0].word == buzzword) && (destination.price_range>=pricelow && destination.price_range<=pricehigh) && (destination.weather == weather)
     end
-    destinations.map{|d| [d.latitude, d.longitude]}
+    destinations.map do |d|
+      [d.attributes, d.buzzwords[0].word, d.latitude, d.longitude]
+    end
   end
 
 end

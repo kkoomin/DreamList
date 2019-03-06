@@ -62,25 +62,62 @@ function initMap() {
         TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI)));
   }
 
-  function placeMarkerAndPanTo(latLng, map) {
+  function placeMarkerAndPanTo(destinationInfo, latLng, map) {
     var marker = new google.maps.Marker({
       position: latLng,
       map: map
     });
-    // map.panTo(latLng);
+    marker.addListener('click',function(){
+      const infoWindow = createInfoWindow(destinationInfo)
+      infoWindow.open(map,marker)
+      infoWindow.addListener('domready', () => {
+        console.log('infowindow domready')
+          const button = document.querySelector(`#add-Btn-${destinationInfo[0].id}`)
+          button.addEventListener('click', (e)=>addToList(e))
+      })
+    })
+  }
+
+  function addToList(e){
+    const destination_id = parseInt(e.target.id.split('-')[e.target.id.split('-').length-1])
+    const user_id = '' //////////////////TO BE CHANGED ONCE WE BUILD IN THE USER ROUTE!!!!!!
+
+    fetch('http://localhost:3000/add-destination', {
+      method: 'POST',
+      headers: {"Content-Type": "application/json", Accept: "application/json"},
+      body: JSON.stringify({destination_id,user_id})})
+      .then(res => res.json())
+      .then(val => console.log(val))
+      .then(sth => window.alert('added'))
+
+  }
+
+  function createInfoWindow(destinationInfo){
+    const destinationObject = destinationInfo[0]
+    const destinationBuzzwords = destinationInfo[1]
+    const content = `<h6>${destinationObject.name}</h6>` + `<p>A city in ${destinationObject.country}, weather is ${destinationObject.weather}, and is suitable for travelers looking ${destinationBuzzwords}.</p>` +  `<button class="btn btn-success btn-sm add" id="add-Btn-${destinationObject.id}">Add to dreamlist</button>`
+    const infoWindow = new google.maps.InfoWindow({
+      content: content
+    })
+    return infoWindow
   }
 
   function mapSearchResult(lanlng_arrays){
     let i = 0;
     const times = lanlng_arrays.length
-
-    function mapLoop(){
-      setTimeout(()=>{
-        latLng = new google.maps.LatLng(parseFloat(lanlng_arrays[i][0]), parseFloat(lanlng_arrays[i][1]))
-        placeMarkerAndPanTo(latLng, map)
-        i++
-        if (i<times) {mapLoop()}
-      },750)
+    if (times == 0) {
+      window.alert('no match')
     }
-    mapLoop()
+    else {
+      function mapLoop(){
+        setTimeout(()=>{
+          let latLng = new google.maps.LatLng(parseFloat(lanlng_arrays[i][2]), parseFloat(lanlng_arrays[i][3]))
+          let destinationInfo = [lanlng_arrays[i][0],lanlng_arrays[i][1]]
+          placeMarkerAndPanTo(destinationInfo, latLng, map)
+          i++
+          if (i<times) {mapLoop()}
+        },750)
+      }
+      mapLoop()
+    }
   }
