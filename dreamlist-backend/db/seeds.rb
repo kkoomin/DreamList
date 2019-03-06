@@ -7,8 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Buzzword.destroy_all
 AirportLocator.destroy_all
+Dreamlist.destroy_all
 Airport.destroy_all
 Destination.destroy_all
+Vacation.destroy_all
+User.destroy_all
 
 #
 #
@@ -20,7 +23,7 @@ CSV.parse(csv, headers:true).each do |row|
       name: row.fields[3],
       latitude: row.fields[4],
       longitude: row.fields[5],
-      iso_country: row.fields[8].downcase,
+      iso_country: row.fields[8],
       iso_region: row.fields[9],
       municipality: row.fields[10],
       iata_code: row.fields[13]
@@ -38,7 +41,7 @@ CSV.parse(csv_2, headers:true).each do |row|
     city = {
       name: row.fields[1],
       country: row.fields[4],
-      iso_country: row.fields[5].downcase,
+      iso_country: row.fields[5],
       latitude: row.fields[2],
       longitude: row.fields[3]
     }
@@ -88,3 +91,29 @@ Destination.delete_destination_without_airport
 Destination.assign_price
 Destination.assign_weather
 Destination.assign_buzzword
+
+users = [
+  {name: "Song", home_base_id: Destination.find_by(name: "Xiamen", iso_country: 'CN').id},
+  {name: "Minha", home_base_id: Destination.find_by(name: "Seoul", iso_country: 'KR').id},
+  {name: "Saphie", home_base_id: Destination.find_by(name: "London", iso_country: 'GB').id},
+  {name: "Jake", home_base_id: Destination.find_by(name: "Boston", iso_country: 'US').id}
+]
+User.create(users)
+
+vacations = [
+  {start_date: "2019-04-10", end_date: "2019-05-10", user_id: User.first.id},
+  {start_date: "2019-06-04", end_date: "2019-07-23", user_id: User.first.id},
+  {start_date: "2019-04-04", end_date: "2019-05-23", user_id: User.second.id},
+  {start_date: "2019-05-04", end_date: "2019-05-23", user_id: User.second.id},
+  {start_date: "2019-08-04", end_date: "2019-09-23", user_id: User.third.id},
+  {start_date: "2019-10-04", end_date: "2019-12-23", user_id: User.fourth.id}
+]
+Vacation.create(vacations)
+
+dreamlists = [
+  {user_id: User.first.id, destination_id: Destination.find_by(name: "Munich", iso_country: 'DE').id},
+  {user_id: User.second.id, destination_id: Destination.find_by(name: "Nice", iso_country: 'FR').id},
+  {user_id: User.third.id, destination_id: Destination.find_by(name: "Vancouver", iso_country: 'CA').id},
+  {user_id: User.fourth.id, destination_id: Destination.find_by(name: "Reykjavík", iso_country: 'IS').id}
+]
+Dreamlist.create(dreamlists)

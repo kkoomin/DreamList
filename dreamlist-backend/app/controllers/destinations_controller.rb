@@ -9,7 +9,7 @@ class DestinationsController < ApplicationController
     render json: @destination
   end
 
-  def getAirports 
+  def getAirports
     @destination = Destination.find(params[:id])
     @airports = @destination.destination_airports_code
     render json: @airports
@@ -23,4 +23,5 @@ class DestinationsController < ApplicationController
     @latlng_arrays = Destination.findDestinations(buzzword,pricelow,pricehigh,weather)
     render json: @latlng_arrays
   end
+
 end
