@@ -1,3 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id
+  has_many :vacations
+  has_many :dreamlists
+  has_many :destinations, through: :dreamlists
+
+  attributes :id, :name, :home_base, :vacations, :dreamlists
 end

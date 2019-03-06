@@ -5,7 +5,11 @@ class Destination < ApplicationRecord
   has_many :users, through: :dreamlists
   has_many :buzzwords
 
-###################################SEED FUNCTIONS###################################################
+
+  def destination_airports_code #airports instance arr
+    self.airports.map{|a| a.iata_code}
+  end
+
   def self.update_accuracy_of_names
     cities_not_found = []
     Airport.all.each do |airport|
