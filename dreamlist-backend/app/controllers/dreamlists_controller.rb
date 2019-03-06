@@ -24,7 +24,7 @@ class DreamlistsController < ApplicationController
   end
 
   private
-  
+
   def dreamlist_params
     params.require(:dreamlist).permit(:user_id, :destination_id)
   end

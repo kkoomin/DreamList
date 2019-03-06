@@ -9,6 +9,7 @@ Buzzword.destroy_all
 AirportLocator.destroy_all
 Airport.destroy_all
 Destination.destroy_all
+
 #
 #
 csv = File.read('public/airports.csv')
@@ -83,6 +84,7 @@ Destination.all.each do |destination|
 end
 
 Destination.update_accuracy_of_names
+Destination.delete_destination_without_airport
 Destination.assign_price
 Destination.assign_weather
 Destination.assign_buzzword

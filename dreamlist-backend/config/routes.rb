@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users/:id/listDestinations', to: 'users#listDestinations', as: 'listDestinations'
   get 'destinations/:id/destinationAirports', to: 'destinations#getAirports', as: 'destinationAirports'
 
+  post '/searchresult', to: 'destinations#searchresult', as: 'searchresult'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

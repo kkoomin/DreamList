@@ -1,10 +1,11 @@
+let map
 
 function initMap() {
     var center = new google.maps.LatLng(34.972129, 19.7774483);
 
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
       center: center,
-      zoom: 2.3,
+      zoom: 2.4,
       zoomControl: false,
       fullscreenControl: false
     });
@@ -19,11 +20,10 @@ function initMap() {
     //   coordInfoWindow.open(map);
     // });
 
-    map.addListener('click', function(e) {
-        // console.log(e.latLng.lat())
-        placeMarkerAndPanTo(e.latLng, map);
-      });
-  }
+    // map.addListener('click', function(e) {
+    //     placeMarkerAndPanTo(e.latLng, map);
+    //   });
+}
 
 
   var TILE_SIZE = 256;
@@ -68,4 +68,19 @@ function initMap() {
       map: map
     });
     // map.panTo(latLng);
+  }
+
+  function mapSearchResult(lanlng_arrays){
+    let i = 0;
+    const times = lanlng_arrays.length
+
+    function mapLoop(){
+      setTimeout(()=>{
+        latLng = new google.maps.LatLng(parseFloat(lanlng_arrays[i][0]), parseFloat(lanlng_arrays[i][1]))
+        placeMarkerAndPanTo(latLng, map)
+        i++
+        if (i<times) {mapLoop()}
+      },750)
+    }
+    mapLoop()
   }
