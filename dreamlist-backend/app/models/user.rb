@@ -3,9 +3,9 @@ class User < ApplicationRecord
     has_many :dreamlists
     has_many :destinations, through: :dreamlists
 
-    def get_home_base_country #instance
-        Destination.all.find_by(name: self.home_base)
-    end
+    # def get_home_base_country #instance
+    #     Destination.all.find_by(name: self.home_base, iso_country: self.iso_country)
+    # end
 
     def home_base_airports_code #airports instance arr
         self.get_home_base_country.airports.map{|a| a.iata_code}

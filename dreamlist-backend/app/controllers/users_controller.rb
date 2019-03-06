@@ -23,20 +23,19 @@ class UsersController < ApplicationController
   
   def homeAirportCodes
     @user = User.find(params[:id])
-    @home_airport_codes = @user.get_home_base_country.airports.map{|a| a.iata_code}
+    @home_airport_codes = Destination.find(@user.home_base_id).airports.map{|a| a.iata_code}
     render json: @home_airport_codes
   end
   
   def listDestinations
     @user = User.find(params[:id])
-    @destinations = @user.dreamlists.map{|list| Destination.find(list.destination_id)}
-    render json: @destinations
+    render json: @user.destinations
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :home_base)
+    params.require(:user).permit(:name, :home_base_id)
   end
   
 end

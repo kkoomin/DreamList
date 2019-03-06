@@ -15,4 +15,12 @@ class DestinationsController < ApplicationController
     render json: @airports
   end
 
+  def searchresult
+    buzzword = params[:buzzword]
+    pricelow = params[:pricelow]
+    pricehigh = params[:pricehigh]
+    weather = params[:weather]
+    @latlng_arrays = Destination.findDestinations(buzzword,pricelow,pricehigh,weather)
+    render json: @latlng_arrays
+  end
 end

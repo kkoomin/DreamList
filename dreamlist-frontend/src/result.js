@@ -35,10 +35,16 @@ function skyscannerAPI(originAirport, destinationAirport, departDate, returnDate
             "X-RapidAPI-Key": "567356378cmshd62769e12f75fd4p14f62cjsn6b1c2336a0fd"
         }
     }
+ 
     return fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${originAirport}/${destinationAirport}/${departDate}?inboundpartialdate=${returnDate}`, options)
+
     .then(res => res.json())
     .then(json => console.log(json))
-}
+
+    // .catch(error => console.log(error.request))
+
+}    
+
 
 
 // get datas from api //
