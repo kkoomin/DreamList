@@ -101,12 +101,12 @@ users = [
 User.create(users)
 
 vacations = [
-  {start_date: "2019-04-10", end_date: "2019-05-10", user_id: User.first.id},
-  {start_date: "2019-06-04", end_date: "2019-07-23", user_id: User.first.id},
-  {start_date: "2019-04-04", end_date: "2019-05-23", user_id: User.second.id},
-  {start_date: "2019-05-04", end_date: "2019-05-23", user_id: User.second.id},
-  {start_date: "2019-08-04", end_date: "2019-09-23", user_id: User.third.id},
-  {start_date: "2019-10-04", end_date: "2019-12-23", user_id: User.fourth.id}
+  {name: "Spring break", start_date: "2019-04-10", end_date: "2019-05-10", user_id: User.first.id},
+  {name: "Go to Beach", start_date: "2019-06-04", end_date: "2019-07-23", user_id: User.first.id},
+  {name: "Late Easter", start_date: "2019-04-04", end_date: "2019-05-23", user_id: User.second.id},
+  {name: "Spring Holiday", start_date: "2019-05-04", end_date: "2019-05-23", user_id: User.second.id},
+  {name: "Away from Heat", start_date: "2019-08-04", end_date: "2019-09-23", user_id: User.third.id},
+  {name: "Long autumn break", start_date: "2019-10-04", end_date: "2019-12-23", user_id: User.fourth.id}
 ]
 Vacation.create(vacations)
 
