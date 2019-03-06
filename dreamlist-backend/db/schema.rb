@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_114434) do
+ActiveRecord::Schema.define(version: 2019_03_06_115627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,9 +69,9 @@ ActiveRecord::Schema.define(version: 2019_03_05_114434) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "home_base"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "home_base_id"
   end
 
   create_table "vacations", force: :cascade do |t|
