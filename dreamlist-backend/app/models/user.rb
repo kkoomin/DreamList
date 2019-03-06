@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_many :destinations, through: :dreamlists
 
     def get_home_base_country #instance
-        Destination.all.find_by(name: self.homebase)
+        Destination.all.find_by(name: self.home_base)
     end
 
     def home_base_airports_code #airports instance arr

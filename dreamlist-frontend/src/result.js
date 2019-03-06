@@ -2,39 +2,29 @@ const resultContainer = document.querySelector(".result-container")
 resultContainer.innerHTML = "hey"
 
 
-
-function cheapestDestination (user, odate , idate){
-    oDate, idate 
-    ocity from city 
-    dcity collection from user 
-
-    ecity loop{ city by city
-        atoB
-    }
-    return 1 vacation period ranked list
-}
-
-
 function multipleVacations(user) {
     let periods = user.vacations
     periods.forEach(period => {
-        let odate = period.start_date
-        let idate = period.end_date
-        multipleDestinations(user, odate, idate)
+        let departDate = period.start_date
+        let returnDate = period.end_date
+        multipleDestinations(user, departDate, returnDate)
     })
 }
 
 function multipleDestinations(user, departDate, returnDate) {
-    const listDestinations = user.dreamlists.map(list => Destination.find(list.destination_id))
-    listDestinations.forEach(destination => atoBCheapestFlight(user, destination, departDate, returnDate))
+    getDestinations(user.id)
+        .then(destinations => {destinations.forEach(destination => atoBCheapestFlight(user, destination, departDate, returnDate))})
+        // debugger
 }
 
-function atoBCheapestFlight(user, destination, departDate, returnDate) {   
-    const originAirports = user.home_base_airports_code
-    const destinationAirports = destination.dreamlist_airports_code
+async function atoBCheapestFlight(user, destination, departDate, returnDate) { 
+    const airports = await Promise.all([getHomeAirportCodes(user.id), getDestinationAirports(destination.id)])
+    const originAirports = airports[0]
+    const destinationAirports = airports[1]
+    // debugger;
     originAirports.forEach(originAirport => {
         destinationAirports.forEach(destinationAirport => {
-            skyscannerAPI(originAirport, destinationAirport, departDate, returnDate)
+             skyscannerAPI(originAirport, destinationAirport, departDate, returnDate)
         })
     })
 }
@@ -51,5 +41,29 @@ function skyscannerAPI(originAirport, destinationAirport, departDate, returnDate
 }
 
 
+// get datas from api //
 
+function getUser(user_id) {
+    return fetch(`http://localhost:3000/users/${user_id}`)
+    .then(res => res.json())
+    .then(user => multipleVacations(user))
+}
+
+function getDestinations(user_id) {
+    return fetch(`http://localhost:3000/users/${user_id}/listDestinations`)
+    .then(res => res.json())
+}
+
+function getHomeAirportCodes(user_id) {
+    return fetch(`http://localhost:3000/users/${user_id}/homeAirportCodes`)
+    .then(res => res.json())
+}
+
+function getDestinationAirports(destination_id) {
+    return fetch(`http://localhost:3000/destinations/${destination_id}/destinationAirports`)
+    .then(res => res.json())
+}
+
+
+getUser(2)
 

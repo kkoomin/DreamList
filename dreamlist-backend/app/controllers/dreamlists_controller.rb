@@ -1,4 +1,4 @@
-class DreamlistController < ApplicationController
+class DreamlistsController < ApplicationController
   def index
     @dreamlists = Dreamlist.all
     render json: @dreamlists
