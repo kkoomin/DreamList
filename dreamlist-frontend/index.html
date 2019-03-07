@@ -6,41 +6,84 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home | DreamList</title>
     <!----- CSS ----->
+    <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
     <!----- JS ----->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
-    <script src="src/index.js" defer></script>
+    <script src="src/home.js" defer></script>
 </head>
 
 <body id="index-body">
     <main role="main" class="container">
         <div class="container">
             <div class="jumbotron">
-                <h1 class="display-4">DreamList</h1>
+                <h1 class="display-4" id="home-title">DreamList</h1>
                 <p class="lead index-description">This is a simple traveling website, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <button class="btn btn-primary btn-lg btn-sign-in">Sign In</button>
+                <button class="btn btn-outline-primary btn-sign-in">Sign In</button>
+                <button class="btn btn-outline-danger btn-sign-up">Sign Up</button>
 
                 <div class="sign-in-form" style="display: none;">
-                    <h2>Make Your DreamList Today!</h2>
+                    <h2>Welcome Back! Dreamer!</h2>
                     <form id="login-form">
                         <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-descibedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <label for="user_name">Your Name</label>
+                        <input type="text" class="form-control" id="user-name" name= "user-name" placeholder="Enter name">
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
 
                         <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="user_password">Password</label>
+                        <input type="password" class="form-control" id="user-password" placeholder="Password">
                         </div>
-              
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <br>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </form>
+                </div>
 
-                    <button class="btn btn-danger btn-sign-up">Sign Up</button>
+                <div class="sign-up-form" style="display: none;">
+                    <h2>Make Your DreamList Today!</h2>
+                    <form id="create-form">
+                        <div class="form-group">
+                            <label for="new_user_name">Your Name</label>
+                            <input type="text" class="form-control" id="new-user-name" placeholder="Enter name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_user_password">Your Password</label>
+                            <input type="password" class="form-control" id="new-user-password" placeholder="Password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="new_user_homebase">Which city do you live in?</label>
+                            <input type="text" class="form-control" id="new-user-homebase" placeholder="City">
+                        </div>
+                        
+                        <br>
+
+                        <h5>-----My First Holiday-----</h5>
+                        <div class="form-group">
+                            <label for="name">Holiday Name</label>
+                            <input type="text" class="form-control" id="holiday-name" name="trip-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="start">From</label>
+                            <input type="date" class="form-control" id="start-date" name="trip-start" value="2019-03-08"
+                            min="2019-01-01" max="2050-12-31">
+                        </div>
+                        <div class="form-group">
+                            <label for="End">To</label>
+                            <input type="date" class="form-control" id="end-date"      name="trip-end" value="2019-03-09"
+                            min="2019-01-01" max="2050-12-31">
+                        </div>
+                        <small class="form-text">Choose your holidays that you are planning now.</small>
+                        <br>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                     </div>  
+
+                    </form>
                 </div>
             </div>
         </div>

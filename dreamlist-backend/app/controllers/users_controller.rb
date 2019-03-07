@@ -5,7 +5,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.create(name: params[:user_name], home_base_id: params[:home_base_id])
+    @vacation = Vacation.create(start_date: params[:start_date], end_date: params[:end_date], user_id: @user.id, name: params[:holiday_name])
+    render json: @user
   end
 
   def show

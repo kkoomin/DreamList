@@ -1,36 +1,12 @@
-const btnSignIn = document.querySelector(".btn-sign-in")
-const btnSignUp = document.querySelector(".btn-sign-up")
-const signInForm = document.querySelector("#login-form")
-const indexDescription = document.querySelector(".index-description")
-
-function toggleSignInForm() {
-    const signInFormDiv = document.querySelector(".sign-in-form");
-    if (signInFormDiv.style.display === "none") {
-      signInFormDiv.style.display = "block";
-      btnSignIn.style.display = "none"
-      indexDescription.style.display = "none"
+// rendering username
+const navUser = document.querySelector("#nav-user-id")
+function setUserGreet() {
+    const sessionUserName = sessionStorage.user_name
+    if(sessionUserName !== undefined) {
+        navUser.innerText = `Welcome! ${sessionUserName}`
     } else {
-      signInFormDiv.style.display = "none";
+        navUser.innerText = "Welcome!"
     }
 }
 
-function toggleSignUpForm() {
-    // const signInForm = document.querySelector(".sign-in-form");
-    // if (signInForm.style.display === "none") {
-    //   signInForm.style.display = "block";
-    //   btnSignIn.style.display = "none"
-    //   indexDescription.style.display = "none"
-    // } else {
-    //   signInForm.style.display = "none";
-    // }
-    console.log("Not made yet")
-}
-
-function dummySubmit() {
-    event.preventDefault()
-    document.location.href = "search.html"
-}
-
-btnSignIn.addEventListener("click", toggleSignInForm)
-btnSignUp.addEventListener("click", toggleSignUpForm)
-signInForm.addEventListener("submit", dummySubmit)
+setUserGreet()

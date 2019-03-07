@@ -1,5 +1,5 @@
 const resultContainer = document.querySelector(".result-container")
-const cardDeck = document.querySelector(".card-deck")
+const cardDeck = document.querySelector(".card-deck-customize")
 
 // rendering price infos
 function renderFlightInfos(realFinalPrices) { // [{}, {}]
@@ -15,22 +15,59 @@ function renderFlightInfo(data) { //{vacation: {vacation instance}, prices: [{ci
 
     const cardHeader = document.createElement("div")
     cardHeader.className = "card-header"
-    cardHeader.innerText = `${data.vacation.name} (${data.vacation.start_date} - ${data.vacation.end_date})`
+    cardHeader.innerText = `${data.vacation.name}`
     const cardBody = document.createElement("div")
     cardBody.className = "card-body"
+    const table = document.createElement("table")
+    table.className = "table"
+    const tHead = document.createElement("thead")
+    const tr_head = document.createElement("tr")
+    tr_head.innerHTML = `
+        <th scope="col"></th>
+        <th scope="col">City</th>
+        <th scope="col">Cheapest Price</th>
+        <th scope="col">Go Booking</th>
+    `
+    tHead.appendChild(tr_head)
+    table.appendChild(tHead)
+    const tBody = document.createElement("tbody")
 
+    let counter = 1
     data.prices.forEach(priceObj => {
-        const cardTitle = document.createElement("h6")
-        cardTitle.className = "card-title"
-        cardTitle.innerText = priceObj.city
-        const cardText = document.createElement("p")
-        cardText.innerText = `$${priceObj.price}`
-        cardBody.append(cardTitle, cardText)
-    })
+        const tr_body = document.createElement("tr")
+        tr_body.innerHTML = `
+            <th scope="row">${counter++}</th>
+            <td>${priceObj.city}</td>
+            <td>$${priceObj.price} <small class="text-muted">${priceObj.direct ? "(direct)" : ""}</small></td>
+            `
+        const td = document.createElement("td")
+        const btn = document.createElement("button")
+        btn.id = "redirect-skyscanner"
+        btn.innerHTML = `<i class="fas fa-plane-departure"></i>`
+        btn.onclick = function () {
+            location.href = `https://www.skyscanner.com/transport/flights/${priceObj.destinationAirportCode}/${priceObj.originAirportCode}/${priceObj.departDate}/${priceObj.returnDate}/?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&ref=home#results.com`
+        }
 
-    card.append(cardHeader, cardBody)
+        td.appendChild(btn)
+        tr_body.appendChild(td)
+        tBody.appendChild(tr_body)
+    })
+    table.appendChild(tBody)
+    cardBody.appendChild(table)
+
+    const cardFooter = document.createElement("div")
+    cardFooter.className = "card-footer"
+    const smallInfo = document.createElement("small")
+    smallInfo.className = "text-muted"
+    smallInfo.innerText = `From ${data.vacation.start_date} To ${data.vacation.end_date}`
+
+    cardFooter.appendChild(smallInfo)
+
+    card.append(cardHeader, cardBody, cardFooter)
     cardDeck.appendChild(card)
 }
+
+
 
 /// Get the cheapest price (skyscanner)
 async function multipleVacations(user) {
@@ -63,7 +100,12 @@ async function multipleDestinations(user, departDate, returnDate) {
         if (cheapestPrice !== undefined) {
             let place = {}
             place["city"] = destination.name
-            place["price"] = cheapestPrice
+            place["price"] = cheapestPrice.price
+            place["direct"] = cheapestPrice.direct
+            place["originAirportCode"] = cheapestPrice.originAirportCode
+            place["destinationAirportCode"] = cheapestPrice.destinationAirportCode
+            place["departDate"] = cheapestPrice.departDate
+            place["returnDate"] = cheapestPrice.returnDate
             destinationsPrices.push(place)
         }
     }) 
@@ -82,6 +124,7 @@ async function atoBCheapestFlight(user, destination, departDate, returnDate) {
     const getSkyscannerPrice = async (originAirport, destinationAirport) => {
         const flight = await skyscannerAPI(originAirport, destinationAirport, departDate, returnDate)
         prices.push(flight)
+        // console.log(flight)
         return flight
     }
 
@@ -93,8 +136,9 @@ async function atoBCheapestFlight(user, destination, departDate, returnDate) {
 
     await Promise.all(skyscannerRequests)
     
+    
     filteredPrices = prices.filter(price => price !== undefined)
-    filteredPrices.sort((a,b) => a-b)
+    filteredPrices.sort((a,b) => a.price-b.price)
     return filteredPrices[0]
 }
 
@@ -104,7 +148,6 @@ function skyscannerAPI(originAirport, destinationAirport, departDate, returnDate
             "X-RapidAPI-Key": "567356378cmshd62769e12f75fd4p14f62cjsn6b1c2336a0fd"
         }
     }
-
     return fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${originAirport}/${destinationAirport}/${departDate}?inboundpartialdate=${returnDate}`, options)
 
         .then(res => res.json())
@@ -113,8 +156,16 @@ function skyscannerAPI(originAirport, destinationAirport, departDate, returnDate
                 return Promise.reject(json)
             else
                 console.log(json)
-                return json.Quotes[0].MinPrice
-        })
+                return {
+                    price: json.Quotes[0].MinPrice, 
+                    direct: json.Quotes[0].Direct, 
+                    originAirportCode: json.Places[0].IataCode,
+                    destinationAirportCode: json.Places[1].IataCode,
+                    departDate: departDate,
+                    returnDate: returnDate
+                }
+
+            })
         .catch(error => console.error(error))
 
 }
@@ -153,4 +204,10 @@ function getDestinationAirports(destination_id) {
 }
 
 
-init(6)
+
+
+init(sessionStorage.user_id)
+
+
+
+
