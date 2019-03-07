@@ -71,7 +71,6 @@ function initMap() {
       const infoWindow = createInfoWindow(destinationInfo)
       infoWindow.open(map,marker)
       infoWindow.addListener('domready', () => {
-        console.log('infowindow domready')
           const button = document.querySelector(`#add-Btn-${destinationInfo[0].id}`)
           button.addEventListener('click', (e)=>addToList(e))
       })
@@ -87,9 +86,22 @@ function initMap() {
       headers: {"Content-Type": "application/json", Accept: "application/json"},
       body: JSON.stringify({destination_id,user_id})})
       .then(res => res.json())
-      .then(val => console.log(val))
-      .then(sth => window.alert('added'))
+      .then(val => {
+        if (val.error) {
+          alertMessage('alert-danger',val.error)
+        }
+        else {
+          alertMessage('alert-success','Added to your dreamlist. Go to Dreamlist tab to see all destinations saved.')
+        }
+      })
+  }
 
+  function alertMessage(alertType, alertText){
+    const alertSpace = document.querySelector('#alert-space')
+    const alertEl = document.createElement('div')
+    alertEl.classList = `alert ${alertType}`
+    alertEl.innerHTML = `${alertText}<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>`
+    alertSpace.appendChild(alertEl)
   }
 
   function createInfoWindow(destinationInfo){
@@ -108,6 +120,7 @@ function initMap() {
     if (times == 0) {
       window.alert('no match')
     }
+
     else {
       function mapLoop(){
         setTimeout(()=>{

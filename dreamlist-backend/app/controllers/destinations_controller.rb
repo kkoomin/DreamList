@@ -24,4 +24,22 @@ class DestinationsController < ApplicationController
     render json: @latlng_arrays
   end
 
+  def searchresult_one
+    @latlng_element = Destination.findSingleDestination(params[:id])
+    render json: @latlng_element
+  end
+
+  def worldcities
+    @destinations = Destination.all
+    @worldcities = []
+    Destination.all.each do |d|
+      worldcity = {}
+      worldcity['id'] = d.id
+      worldcity['name'] = d.name
+      worldcity['country'] = d.country
+      @worldcities.push(worldcity)
+    end
+    render json: @worldcities
+  end
+
 end

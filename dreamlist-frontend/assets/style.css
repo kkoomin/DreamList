@@ -86,16 +86,77 @@ body#index-body {
     margin-right: auto;
 }
 
+#searchDirect{
+  margin-left: 8px;
+}
+
+#js-example-basic-single{
+  height: 1.5px !important;
+}
+
+
+.col-form-label.mr-sm-2.col-form-label-sm {
+  margin-left: 5px;
+}
 .form-inline {
     display: block;
     text-align: center;
 }
+
 
 .margin-auto {
   margin-left: auto;
   margin-right: auto;
 }
 
+.dreamlist{
+  width: 45%;
+  display: inline-block;
+  height: 350px;
+  vertical-align:top;
+  margin-left:30px;
+  margin-right:30px;
+  margin-top:5px;
+  margin-bottom:5px;
+  align-content: center;
+  text-align: center;
+  padding: 0!important;
+}
+
+.dreamlist-container{
+  margin:0;
+  margin-top: 20px;
+  align-content: center;
+  text-align: center;
+}
+
+.dreamlist-picture{
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 0!important;
+  position: relative;
+  /* background-size:100%; */
+}
+
+.picture-label{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 20px;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.center-fit{
+  max-width: 100%;
+  max-height: 100vh;
+  margin: auto;
+}
 
 /* list */
 .col-6.col-md-4  {
