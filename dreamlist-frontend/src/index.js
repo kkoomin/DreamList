@@ -28,7 +28,7 @@ function toggleSignUpForm() {
 
 function dummySubmit() {
     event.preventDefault()
-    document.location.href = "dreamlist.html"
+    document.location.href = "search.html"
 }
 
 btnSignIn.addEventListener("click", toggleSignInForm)

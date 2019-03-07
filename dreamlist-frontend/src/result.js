@@ -112,6 +112,7 @@ function skyscannerAPI(originAirport, destinationAirport, departDate, returnDate
             if ('ValidationErrors' in json)
                 return Promise.reject(json)
             else
+                console.log(json)
                 return json.Quotes[0].MinPrice
         })
         .catch(error => console.error(error))
