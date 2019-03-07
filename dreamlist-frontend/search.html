@@ -12,11 +12,16 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
+    <!----- Dropdown ----->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js" defer></script>
+    <!----- Googlemap ----->
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc29X3wbonxLhw8pgnOu7J-cn-GXrAk3U&callback=initMap">
     </script>
     <script src="src/map.js" defer></script>
     <script src="src/search.js" defer></script>
+
 
 </head>
 
@@ -39,26 +44,25 @@
             <a class="nav-link" href="result.html">Flights</a>
             </li>
         </ul>
-        <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
         </div>
     </nav>
-
+    <div id='alert-space'>
+    </div>
 
     <!---main--->
     <div class="container">
         <div id="search-form">
+
+
             <form class="form-inline col-md">
               <div class="d-flex justify-content-center">
                 <input id=buzzword class="form-control mr-sm-2 col-md-2" type="text" placeholder="Keyword" aria-label="Search">
 
-                <label for="weather" class="col-form-label mr-sm-2 col-form-label-sm">Weather:</label>
+                <!-- <label for="weather" class="col-form-label mr-sm-2 col-form-label-sm">Weather:</label> -->
 
                 <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle mr-sm-2" type="button" id="weather" data-toggle="dropdown">
-                  Somewhere...
+                  Weather
                 </button>
                 <div class="dropdown-menu" id="weatherMenu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item" href="#">very warm</a>
@@ -100,11 +104,19 @@
                   <a class="dropdown-item" href="#">$$$$$</a>
                 </div>
                 </div>
-                <button class="btn form-control btn-primary my-2 my-sm-0" type="submit">Search</button>
+
+                <label for="searchDirect" class="col-form-label mr-sm-2 col-form-label-sm">OR</label>
+                <select id=searchDirect class="js-example-basic-single form-control mr-sm-2 col-md-2">
+                  <option value="0" selected="selected">Find city by name</option>
+                </select>
+                <button class="btn form-control btn-success my-2 my-sm-0" type="submit">Search</button>
                 </div>
             </form>
+
+
         </div>
         <div id="map"></div>
     </div>
+
 </body>
 </html>

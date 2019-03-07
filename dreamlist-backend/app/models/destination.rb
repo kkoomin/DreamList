@@ -109,4 +109,9 @@ class Destination < ApplicationRecord
     end
   end
 
+  def self.findSingleDestination(id)
+    destination = Destination.find(id)
+    return [[destination.attributes, destination.buzzwords[0].word, destination.latitude, destination.longitude]]
+  end
+
 end

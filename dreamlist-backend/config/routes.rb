@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :dreamlists
-  resources :destinations
   resources :users
   resources :airports
   resources :vacations
@@ -10,7 +9,10 @@ Rails.application.routes.draw do
   get 'destinations/:id/destinationAirports', to: 'destinations#getAirports', as: 'destinationAirports'
 
   post '/searchresult', to: 'destinations#searchresult', as: 'searchresult'
+  get '/searchresult/:id', to: 'destinations#searchresult_one', as: 'searchresult_one'
   post '/add-destination', to: 'users#add_destination', as: 'add_destination'
+  get '/destinations/worldcities', to: 'destinations#worldcities', as:'worldcities'
+  resources :destinations
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
