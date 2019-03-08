@@ -93,7 +93,7 @@ Destination.assign_weather
 Destination.assign_buzzword
 
 users = [
-  {name: "Song", home_base_id: Destination.find_by(name: "Xiamen", iso_country: 'CN').id},
+  {name: "Song", home_base_id: Destination.find_by(name: "Dubai", iso_country: 'AE').id},
   {name: "Minha", home_base_id: Destination.find_by(name: "Seoul", iso_country: 'KR').id},
   {name: "Saphie", home_base_id: Destination.find_by(name: "London", iso_country: 'GB').id},
   {name: "Jake", home_base_id: Destination.find_by(name: "Boston", iso_country: 'US').id}

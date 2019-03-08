@@ -1,7 +1,7 @@
 function getUserData() {
     return fetch(`http://localhost:3000/users`)
     .then(res => res.json())
-    .then(data => data.filter(user => user.id === parseInt(sessionStorage.user_id)))
+    .then(data => data.filter(user => user.id === parseInt(sessionStorage.user_id) ))
 } //user.vacations {id, start_date, end_date, name}
 
 function getHomebase(id) {
@@ -98,7 +98,7 @@ function addNewVacation(event) {
     const vacationEnd = event.target.elements["trip-end"].value
     const data = {name: vacationName, start_date: vacationStart, end_date: vacationEnd, user_id: sessionStorage.user_id}
     event.target.reset()
-    
+
     addVacationData(data)
     .then(() => getUserData()
         .then(user => renderVacations(user[0].vacations)))
@@ -116,4 +116,3 @@ function init() {
 }
 
 init()
-
