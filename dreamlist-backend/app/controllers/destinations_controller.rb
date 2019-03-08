@@ -9,6 +9,11 @@ class DestinationsController < ApplicationController
     render json: @destination
   end
 
+  def getHomebase 
+    @destination = Destination.find(params[:id])
+    render json: @destination
+  end
+  
   def getAirports
     @destination = Destination.find(params[:id])
     @airports = @destination.destination_airports_code

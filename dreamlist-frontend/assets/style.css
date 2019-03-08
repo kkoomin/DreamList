@@ -116,20 +116,11 @@ a:hover {
     padding-bottom: 10px;
 }
 
-/* .sign-up-form {
-    width: 50%;
-    display: flex;
-    margin: 0;
-    padding: 0;
-} */
-
 .start-form {
-
     width: 277px;
 }
 
 .end-form {
-
     width: 277px;
 }
 
@@ -246,10 +237,6 @@ a:hover {
   margin: auto;
 }
 
-/* list */
-.col-6.col-md-4  {
-    background-color: pink;
-}
 
 
 
@@ -271,6 +258,7 @@ a:hover {
     display: inline-block;
     margin: 20px;
     vertical-align: top;
+    box-shadow: 8px 8px 5px rgb(75, 199, 207, 0.5);
 }
 
 #redirect-skyscanner {
@@ -279,7 +267,7 @@ a:hover {
 }
 
 .fas.fa-plane-departure {
-    color: skyblue;
+    color: #D4F1F9;
 }
 
 #redirect-skyscanner:hover .fas.fa-plane-departure {
@@ -292,4 +280,55 @@ a:hover {
     position: absolute;
     width: 100%;
     bottom: 0;
+}
+
+.card-header {
+    background-color: #D4F1F9;
+}
+
+
+/* user page */
+ .user-container {
+     background-image: url("https://images.unsplash.com/photo-1529947327457-8f5cb53bc1b6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)");
+     /* opacity: 0.5; */
+     z-index: -1;
+     margin: 0px;
+     height: 100%;
+     /* align-content: center;
+     height
+     text-align: center; */
+ }
+
+ .table-vacation {
+     width: 50%;
+     color: black;
+ }
+
+ .info-user-vacation {
+     padding: 50px;
+ }
+
+ .info-user-name {
+    padding: 50px;
+    font-size: 30px;
+ }
+
+ .info-user-homebase {
+    padding: 50px;
+    font-size: 30px;
+ }
+
+ .delete-btn {
+     all: unset;
+     cursor: pointer;
+ }
+
+.fa-calendar-minus {
+    color: rgb(228, 40, 40);
+}
+
+.fa-calendar-minus:hover {
+    -webkit-animation: pulse 1s;
+    animation: pulse 1s;
+    animation-iteration-count: infinite;
 }

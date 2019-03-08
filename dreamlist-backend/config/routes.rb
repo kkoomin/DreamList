@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'users/:id/homeAirportCodes', to: 'users#homeAirportCodes', as: 'homeAirportCodes'
   get 'users/:id/listDestinations', to: 'users#listDestinations', as: 'listDestinations'
   get 'destinations/:id/destinationAirports', to: 'destinations#getAirports', as: 'destinationAirports'
+  get 'destinations/:id/getHomebase', to: 'destinations#getHomebase', as: 'getHomebase'
 
   post '/searchresult', to: 'destinations#searchresult', as: 'searchresult'
   get '/searchresult/:id', to: 'destinations#searchresult_one', as: 'searchresult_one'
