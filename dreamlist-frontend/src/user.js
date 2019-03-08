@@ -64,7 +64,7 @@ function renderVacations(vacations) {
         const btn = document.createElement("button")
         btn.className = "delete-btn"
         btn.dataset.id = vacation.id
-        btn.innerHTML = `<i class="far fa-calendar-minus"></i>`
+        btn.innerHTML = `<button type="button" class="btn btn-light"><i class="fas fa-trash-alt"></i></button>`
         btn.addEventListener("click", e => {
             deleteVacationData(vacation.id)
             .then(() => getUserData()
@@ -78,7 +78,7 @@ function renderVacations(vacations) {
 
     const addBtn = document.createElement("button")
     addBtn.innerText = "Add Vacation"
-    addBtn.className = "btn btn-outline-info"
+    addBtn.className = "btn btn-info"
     addBtn.addEventListener("click", e => {
         renderAddVacationForm(e)
     })

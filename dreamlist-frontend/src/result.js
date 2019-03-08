@@ -45,7 +45,7 @@ function renderFlightInfo(data) { //{vacation: {vacation instance}, prices: [{ci
         btn.id = "redirect-skyscanner"
         btn.innerHTML = `<i class="fas fa-plane-departure"></i>`
         btn.onclick = function () {
-            location.href = `https://www.skyscanner.com/transport/flights/${priceObj.destinationAirportCode}/${priceObj.originAirportCode}/${priceObj.departDate}/${priceObj.returnDate}/?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&ref=home#results.com`
+            window.open(`https://www.skyscanner.com/transport/flights/${priceObj.destinationAirportCode}/${priceObj.originAirportCode}/${priceObj.departDate}/${priceObj.returnDate}/?adults=1&children=0&adultsv2=1&childrenv2=&infants=0&cabinclass=economy&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false&ref=home#results.com`, "_blank") 
         }
 
         td.appendChild(btn)

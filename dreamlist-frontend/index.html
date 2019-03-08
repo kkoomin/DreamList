@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home | DreamList</title>
+    <title>Home | ✈️ DreamList</title>
     <!----- CSS ----->
     <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -22,6 +22,7 @@
 <body id="index-body">
     <main role="main" class="container">
         <div class="container">
+            <div id='index-alert'></div>
             <div class="jumbotron">
                 <a href="index.html"><h1 class="display-4" id="home-title">DreamList</h1></a>
                 <p class="lead index-description">This is a simple traveling website, helping you to find a place which is like a hidden treasure.</p>
@@ -34,7 +35,6 @@
                         <div class="form-group">
                         <label for="user_name">Your Name</label>
                         <input type="text" class="form-control" id="user-name" name= "user-name" placeholder="Enter name">
-                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
 
                         <div class="form-group">
@@ -75,7 +75,7 @@
                         <h5>-----My First Holiday-----</h5>
                         <div class="form-group">
                             <label for="name">Holiday Name</label>
-                            <input type="text" class="form-control" id="holiday-name" name="trip-name">
+                            <input type="text" class="form-control" id="holiday-name" name="trip-name" placeholder="Holiday Jollyday">
                         </div>
                         <div class="form-group">
                             <label for="start">From</label>
@@ -87,7 +87,7 @@
                             <input type="date" class="form-control" id="end-date"      name="trip-end" value="2019-03-09"
                             min="2019-01-01" max="2050-12-31">
                         </div>
-                        <small class="form-text">Choose your holidays that you are planning now.</small>
+                        <small class="form-text">Choose one of your holidays that you are planning now.</small>
                         <br>
                         <button type="submit" class="btn btn-primary">Submit</button>
                      </div>
@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-
+        <p class="mt-5 mb-3 text-center">&copy; 2019</p>
     </main>
 
 </body>

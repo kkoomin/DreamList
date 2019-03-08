@@ -125,8 +125,16 @@ Vacation.create(vacations)
 
 dreamlists = [
   {user_id: User.first.id, destination_id: Destination.find_by(name: "Munich", iso_country: 'DE').id},
-  {user_id: User.second.id, destination_id: Destination.find_by(name: "Nice", iso_country: 'FR').id},
+  {user_id: User.first.id, destination_id: Destination.find_by(name: "Seoul", iso_country: 'KR').id},
+  {user_id: User.first.id, destination_id: Destination.find_by(name: "Paris", iso_country: 'FR').id},
+  {user_id: User.second.id, destination_id: Destination.find_by(name: "Shanghai", iso_country: 'CN').id},
+  {user_id: User.second.id, destination_id: Destination.find_by(name: "Basel", iso_country: 'CH').id},
+  {user_id: User.second.id, destination_id: Destination.find_by(name: "Toledo", iso_country: 'ES').id},
   {user_id: User.third.id, destination_id: Destination.find_by(name: "Vancouver", iso_country: 'CA').id},
-  {user_id: User.fourth.id, destination_id: Destination.find_by(name: "Reykjavík", iso_country: 'IS').id}
+  {user_id: User.third.id, destination_id: Destination.find_by(name: "Vienna", iso_country: 'AT').id},
+  {user_id: User.third.id, destination_id: Destination.find_by(name: "Milan", iso_country: 'IT').id},
+  {user_id: User.fourth.id, destination_id: Destination.find_by(name: "Reykjavík", iso_country: 'IS').id},
+  {user_id: User.fourth.id, destination_id: Destination.find_by(name: "Tokyo", iso_country: 'JP').id},
+  {user_id: User.fourth.id, destination_id: Destination.find_by(name: "Honolulu", iso_country: 'US').id}
 ]
 Dreamlist.create(dreamlists)
