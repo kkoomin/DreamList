@@ -301,7 +301,7 @@ a:hover {
  }
 
  .table-vacation {
-     width: 50%;
+     width: 100%;
      color: black;
  }
 
@@ -332,4 +332,35 @@ a:hover {
     -webkit-animation: pulse 1s;
     animation: pulse 1s;
     animation-iteration-count: infinite;
+}
+
+.vacation-list-container{
+  display: inline-block;
+  vertical-align:top;
+  width: 60%;
+}
+
+.vacation-add-container{
+  display: inline-block;
+  margin-top: 275px;
+  vertical-align:top;
+  width: 35%;
+}
+
+.form-control.add-vacay{
+  width: 80%;
+  text-align: left;
+  padding: 10px;
+}
+
+#add-vacation-form{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn.btn-success.add-vacay{
+  padding:auto;
 }

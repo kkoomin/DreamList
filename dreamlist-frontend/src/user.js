@@ -28,9 +28,9 @@ function deleteVacationData(id) {
 //render
 async function renderUserInfo(user) {
     const userName = document.querySelector(".info-user-name")
-    userName.innerText = `Name: ${user[0].name}`
-    const userHomebase = document.querySelector(".info-user-homebase")
-    userHomebase.innerText = `Home City: ${await getHomebase(user[0].home_base_id)}`
+    userName.innerHTML = `<h1>${user[0].name} 👻</h1> from ${await getHomebase(user[0].home_base_id)}`
+    // const userHomebase = document.querySelector(".info-user-info")
+    // userHomebase.innerText = `from ${await getHomebase(user[0].home_base_id)}`
 }
 
 const divVacation = document.querySelector(".info-user-vacation")
@@ -87,7 +87,7 @@ function renderVacations(vacations) {
 
 function renderAddVacationForm(e) {
     const addFormDiv = document.querySelector(".add-vacation")
-    addFormDiv.style.display = "block"
+    addFormDiv.style.display === 'none' ? addFormDiv.style.display = 'block' : addFormDiv.style.display = 'none'
 }
 
 function addNewVacation(event) {

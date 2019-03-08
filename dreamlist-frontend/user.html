@@ -34,10 +34,10 @@
             <a class="nav-link" href="dreamlist.html">DREAMLIST</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="result.html">FLIGHTS</a>   
+            <a class="nav-link" href="result.html">FLIGHTS</a>
             </li>
             <li class="nav-item active">
-            <a class="nav-link" href="user.html">USER</a>   
+            <a class="nav-link" href="user.html">USER</a>
             </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
@@ -51,36 +51,35 @@
     <!---main--->
     <main role="main" class="container">
         <div class="container user-container">
-            <div class="info-user-name">
-                
-            </div>
-            <div class="info-user-homebase">
-
-            </div>
-            <div class="info-user-vacation">
-                
-            </div>
+          <div class="vacation-list-container">
+            <div class="info-user-name"></div>
+            <div class="info-user-info"></div>
+            <div class="info-user-vacation"></div>
+          </div>
+          <div class="vacation-add-container">
             <div class="add-vacation" style="display: none;">
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
                 <form id="add-vacation-form">
                     <div class="form-group">
                         <label for="name">Holiday Name</label>
-                        <input type="text" class="form-control" id="holiday-name" name="trip-name">
+                        <input type="text" class="form-control add-vacay" id="holiday-name" name="trip-name">
                     </div>
                     <div class="form-group">
                         <label for="start">From</label>
-                        <input type="date" class="form-control" id="start-date" name="trip-start" value="2019-03-08"
+                        <input type="date" class="form-control add-vacay" id="start-date" name="trip-start" value="2019-03-08"
                         min="2019-01-01" max="2050-12-31">
                     </div>
                     <div class="form-group">
                         <label for="End">To</label>
-                        <input type="date" class="form-control" id="end-date"      name="trip-end" value="2019-03-09"
+                        <input type="date" class="form-control add-vacay" id="end-date" name="trip-end" value="2019-03-09"
                         min="2019-01-01" max="2050-12-31">
                     </div>
-                    <small class="form-text">Choose your holidays that you are planning now.</small>
                     <br>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success add-vacay">Submit</button>
                 </form>
             </div>
+          </div>
+          </div>
         </div>
     </main>
 </body>
