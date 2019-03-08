@@ -33,14 +33,18 @@ function fetchDreamList(user_id){
 }
 
 function fetchpicture (word){
-  const pictureAPIurl = `https://api.pexels.com/v1/search?query=${word}&per_page=1&page=1`
+  console.log(word)
+  const pictureAPIurl = `https://api.pexels.com/v1/search?query=${word}&per_page=1&page=2`
   return fetch(pictureAPIurl, {
     headers: {
       Authorization: `${apiKey}`
     }
   })
-    .then(res => res.json())
+  .then(res => {
+      console.log(res)
+      return res.json()})
     .then (val => {
+      console.log(val)
       if (val.photos.length===0) {
         return 36717
       }
