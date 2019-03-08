@@ -22,8 +22,6 @@ function createUserData(data) {
 }
 
 
-
-
 // rendering form
 function toggleSignInForm() {
     const signInFormDiv = document.querySelector(".sign-in-form");
@@ -123,6 +121,13 @@ function userCheck(data, userInfo) {
     sessionStorage.getItem("user_name");
     document.location.href = "search.html"
   } else {
-    alert("There's no matching user. Check user name again.")
+    const alertSpace = document.querySelector("#index-alert")
+    alertSpace.innerHTML = `
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    There's no matching user. Please check your name and password.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>`
   }
 }
