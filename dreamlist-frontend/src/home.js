@@ -89,7 +89,7 @@ function userSignIn(event) {
 function userSignUp(event) {
   event.preventDefault()
   const userNameInput = document.querySelector("#new-user-name").value
-  const userHomeInput = parseInt(document.querySelector("#new-user-homebase").value)
+  const userHomeInput = parseInt(document.querySelector("#searchDirect").value)
   const vacationName = document.querySelector("#holiday-name").value
   const vacationStartDate = document.querySelector("#start-date").value
   const vacationEndDate = document.querySelector("#end-date").value
