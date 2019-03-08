@@ -35,11 +35,13 @@ class UsersController < ApplicationController
   end
 
   def add_destination
-    if Dreamlist.find_by(user_id: User.first.id, destination_id: params[:destination_id]) === nil
-      @dreamlist = Dreamlist.create(user_id: User.first.id, destination_id: params[:destination_id])
-      ### TO BE CHANGED ONCE WE SET UP THE LOG IN !!!!!!
-    else
+    @user = User.find(params[:user_id])
+    if Dreamlist.find_by(user_id: @user.id, destination_id: params[:destination_id]) != nil
       @dreamlist = {error:'Already in your dreamlist'}
+    elsif @user.home_base_id == params[:destination_id]
+      @dreamlist = {error:'As much as you like your home, it cannot be your dream destination!'}
+    else
+      @dreamlist = Dreamlist.create(user_id: params[:user_id], destination_id: params[:destination_id])
     end
     render json: @dreamlist
   end

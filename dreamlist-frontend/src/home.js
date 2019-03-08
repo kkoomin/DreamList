@@ -42,6 +42,8 @@ function toggleSignUpForm() {
     const signUpFormDiv = document.querySelector(".sign-up-form");
     if (signUpFormDiv.style.display === "none") {
       signUpFormDiv.style.display = "block";
+      initiateSelectionHomeList()
+      loadSelect2()
       btnSignIn.style.display = "none"
       btnSignUp.style.display = "none"
       indexDescription.style.display = "none"
@@ -49,6 +51,28 @@ function toggleSignUpForm() {
       signUpFormDiv.style.display = "none";
     }
     signUpForm.addEventListener("submit", userSignUp)
+}
+
+function loadSelect2(){
+  $(document).ready(function() {
+      $('.js-example-basic-single').select2();
+  });
+}
+
+async function initiateSelectionHomeList (){
+  const searchDirectEl = document.querySelector('#searchDirect')
+  const list = await getWorldCities()
+  list.forEach((city)=>{
+    const optionEl = document.createElement('option')
+    optionEl.innerText = `${city.name}, ${city.country}`
+    optionEl.value =  `${city.id}`
+    searchDirectEl.appendChild(optionEl)
+  })
+}
+
+function getWorldCities(){
+  return fetch('http://localhost:3000/destinations/worldcities')
+    .then(res => res.json())
 }
 
 btnSignIn.addEventListener("click", toggleSignInForm)
@@ -72,10 +96,10 @@ function userSignUp(event) {
   const vacationStartDate = document.querySelector("#start-date").value
   const vacationEndDate = document.querySelector("#end-date").value
   const data = {
-    user_name: userNameInput, 
+    user_name: userNameInput,
     home_base_id: userHomeInput,
-    start_date: vacationStartDate, 
-    end_date: vacationEndDate, 
+    start_date: vacationStartDate,
+    end_date: vacationEndDate,
     holiday_name: vacationName
   }
   return createUserData(data)
@@ -102,8 +126,3 @@ function userCheck(data, userInfo) {
     alert("There's no matching user. Check user name again.")
   }
 }
-
-
-
-
-

@@ -43,6 +43,46 @@ a:hover {
     max-width: 100%;
 }
 
+.btn-primary{
+  border-color: #006994;
+  background-color: #006994;
+}
+
+.btn-secondary{
+  border-color: #D4F1F9;
+  background-color: #D4F1F9;
+  color:black;
+}
+
+.btn-success{
+  border-color: #4BC7CF;
+  background-color: #4BC7CF;
+  color:white;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.btn-success.focus,
+.btn-success:focus {
+  color: white;
+  background-color: #006994;
+  border-color: #006994;
+  outline: none;
+  box-shadow: none;
+}
+.btn-success:hover {
+  color: white;
+  background-color: #006994;
+  border-color: #006994;
+  outline: none;
+  box-shadow: none;
+}
+.btn-success:active {
+  color: white;
+  background-color: #006994;
+  border-color:#006994;
+  outline: none;
+  box-shadow: none;
+}
 
 
 /* Index page */
@@ -54,6 +94,8 @@ a:hover {
 .jumbotron {
     display: block;
     text-align: center;
+    padding-top: 48px;
+    padding-bottom: 48px;
     background: rgba(0, 0, 0, 0.4); /* Black background with 0.5 opacity */
     color: white;
 }
@@ -128,6 +170,27 @@ a:hover {
     text-align: center;
 }
 
+.form-control.btn.btn-success{
+  margin-left: 5px;
+}
+
+.form-control.js-example-basic-single.search{
+  width: 200px;
+  height: 50px !important;
+  line-height: 50px !important;
+  text-align: left;
+}
+
+.form-control.js-example-basic-single.homebase{
+  width: 30%;
+  height: 50px !important;
+  line-height: 50px !important;
+  text-align: left;
+}
+
+.select2-container .select2-selection--single {
+    height: 37px !important
+}
 
 .margin-auto {
   margin-left: auto;
@@ -202,7 +265,7 @@ a:hover {
 
 .card {
     width: 25%;
-    height: 500px;    
+    height: 500px;
     /* max-height: 500px;    */
     /* height: 100vh;  */
     display: inline-block;

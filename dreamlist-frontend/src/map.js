@@ -79,7 +79,7 @@ function initMap() {
 
   function addToList(e){
     const destination_id = parseInt(e.target.id.split('-')[e.target.id.split('-').length-1])
-    const user_id = '' //////////////////TO BE CHANGED ONCE WE BUILD IN THE USER ROUTE!!!!!!
+    const user_id = parseInt(sessionStorage.user_id)
 
     fetch('http://localhost:3000/add-destination', {
       method: 'POST',

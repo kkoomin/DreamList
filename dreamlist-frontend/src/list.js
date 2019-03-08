@@ -6,7 +6,7 @@ renderDreamList()
 
 async function renderDreamList(){
   listEl.innerHTML = ""
-  const userDreamlist = await fetchDreamList(9)
+  const userDreamlist = await fetchDreamList(sessionStorage.user_id)
   userDreamlist.forEach((cityObject)=>{
     renderSingleDestination(cityObject)
   })
@@ -40,7 +40,14 @@ function fetchpicture (word){
     }
   })
     .then(res => res.json())
-    .then (val => val.photos[0].id)
+    .then (val => {
+      if (val.photos.length===0) {
+        return 36717
+      }
+      else {
+        return val.photos[0].id
+      }
+    })
     .then (photoId => {
       return fetch(`https://api.pexels.com/v1/photos/${photoId}`, {
         headers: {
@@ -49,5 +56,5 @@ function fetchpicture (word){
       })
     })
     .then(res => res.json())
-    .then (val => val.src.landscape)
+    .then (val => {console.log(val); return val.src.landscape})
 }
