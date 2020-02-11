@@ -1,7 +1,5 @@
 # DreamList
 
-iPad application for music students to read music sheets, manage daily schedules and practice hours
-
 Finding a place for your next vacation could be hard. Most likely it depends on one of the following things: word of mouth, lonely planet top 50 of the year, tour agency packages, or simply where a budget flight ticket takes you. While conversations with your friends on where to go next could be fun, it is also quite limiting. It stops you from finding some of the hidden gems that may have perfectly fit your criteria but just has not been well travelled to yet. (Who would have know that Azerbaijan is so cool?) Destination DreamList will revolutionize this process. We help you triangulate your full potential dream travel destinations.
 
 What does Destination DreamList offer?
